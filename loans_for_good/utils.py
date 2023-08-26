@@ -10,3 +10,14 @@ MARITAL_STATUS_OPTIONS = (
     (EnumMaritalStatusOptions.DIVORCED, u'Divorciado'),
     (EnumMaritalStatusOptions.WIDOWED, u'Viúvo')
 )
+
+FIELD_OPTIONS = [
+    ('name', 'Nome'),
+    ('document', 'Documento'),
+    ('email', 'Email'),
+    ('marital_status', 'Status civil'),
+    ('birth_date', 'Data de aniversário'),
+    ('nationality', 'Nacionalidade'),
+    ('phone_number', 'Telefone'),
+    ('monthly_income', 'Renda mensal'),
+]

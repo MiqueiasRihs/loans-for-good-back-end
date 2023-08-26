@@ -12,6 +12,7 @@ class CustomerAnalysisView(APIView):
         if serializer.is_valid():
             name = serializer.validated_data['name']
             document = serializer.validated_data['document']
+            email = serializer.validated_data['email']
 
             # Imprime os dados na tela
             print(f'Nome: {name}')
@@ -19,7 +20,8 @@ class CustomerAnalysisView(APIView):
 
             CustomerAnalysis.objects.create(
                 name=name,
-                document=document
+                document=document,
+                email=email
             )
 
             return Response({'message': 'Dados recebidos com sucesso!'}, status=status.HTTP_200_OK)
