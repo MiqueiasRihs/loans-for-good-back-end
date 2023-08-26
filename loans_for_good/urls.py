@@ -5,5 +5,5 @@ from loans_for_good.views import CustomerAnalysisView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('documento/', CustomerAnalysisView.as_view(), name='documento'),
+    path('analise-de-cliente/', CustomerAnalysisView.as_view(), name='CustomerAnalysisView'),
 ]
