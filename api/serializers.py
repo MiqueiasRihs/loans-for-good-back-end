@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import CustomerAnalysis
+from loans_for_good.models import CustomerAnalysis
 
 class CustomerAnalysisSerializer(serializers.ModelSerializer):
     class Meta:

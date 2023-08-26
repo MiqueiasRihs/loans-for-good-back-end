@@ -1,9 +1,12 @@
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from loans_for_good.views import CustomerAnalysisView
+admin.autodiscover()
+admin.site.site_header = u'Loans For Good - Back office '
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('analise-de-cliente/', CustomerAnalysisView.as_view(), name='CustomerAnalysisView'),
+
+    # API
+    path('api/', include('api.urls')),
 ]
