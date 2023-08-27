@@ -4,6 +4,15 @@ class EnumMaritalStatusOptions(object):
     DIVORCED = 3
     WIDOWED = 4
     
+class EnumAnalysisStatus(object):
+    APPROVED = 1
+    DENIED = 2
+    
+ANALYSIS_STATUS = (
+    (EnumAnalysisStatus.APPROVED, u'Aprovado'),
+    (EnumAnalysisStatus.DENIED, u'Negado'),
+)
+
 MARITAL_STATUS_OPTIONS = (
     (EnumMaritalStatusOptions.SINGLE, u'Solteiro'),
     (EnumMaritalStatusOptions.MARRIED, u'Casado'),

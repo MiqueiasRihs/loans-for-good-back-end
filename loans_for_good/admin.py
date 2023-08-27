@@ -7,10 +7,11 @@ from .forms import UserFormConfigurationForm
 class CustomerAnalysisAdmin(admin.ModelAdmin):
     list_display = ('name', 'document', 'email', 'phone_number', 'approved',)
     search_fields = ('name', 'name', 'document', 'email',)
+    readonly_fields = ['analyzed_at']
     
     fieldsets = (
         ('Informações Básicas', {
-            'fields': ('name', 'document', 'email', 'approved')
+            'fields': ('name', 'document', 'email', 'approved', 'analyzed_at')
         }),
         ('Detalhes Pessoais', {
             'fields': ('marital_status', 'birth_date', 'nationality', 'phone_number', 'monthly_income')

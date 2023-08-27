@@ -3,3 +3,4 @@ djangorestframework
 psycopg
 celery
 redis
+requests
