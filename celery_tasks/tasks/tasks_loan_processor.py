@@ -18,6 +18,7 @@ def task_loan_request(url, headers, customer_id):
 
     if response.ok:
         content = response.json()
+        
         customer.approved = content["approved"]
         customer.analyzed_at = timezone.now()
         customer.save()

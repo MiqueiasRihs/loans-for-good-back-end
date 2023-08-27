@@ -14,7 +14,6 @@ class CustomerAnalysisView(APIView):
         data = CustomerAnalysisSerializer(data=request.data)
         
         if data.is_valid():
-            
             name = data.validated_data["name"] if data["name"].value else None
             document = data.validated_data["document"] if data["document"].value else None
             email = data.validated_data["email"] if data["email"].value else None

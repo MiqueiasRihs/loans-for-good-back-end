@@ -1,10 +1,5 @@
 from celery_tasks.tasks.tasks_loan_processor import task_loan_request
 
-from loans_for_good.models import CustomerAnalysis
-import json, requests
-
-from django.utils import timezone
-
 
 class LoanProcessor:
     def __init__(self):
