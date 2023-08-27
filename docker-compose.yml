@@ -3,7 +3,6 @@ services:
   web:
     container_name: "django"
     image: python:latest
-    command: bash -c "python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000"
     build:
       context: .
       dockerfile: Dockerfile
@@ -13,6 +12,10 @@ services:
       - "8000:8000"
     environment:
       - DJANGO_SETTINGS_MODULE=loans_for_good.settings
+      - DJANGO_SUPERUSER_PASSWORD
+      - DJANGO_SUPERUSER_EMAIL
+      - DJANGO_SUPERUSER_USERNAME
+    entrypoint: ./setup_dev.sh
     depends_on:
       - db
     tty: true
