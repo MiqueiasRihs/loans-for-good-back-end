@@ -3,7 +3,7 @@ services:
   web:
     container_name: "django"
     image: python:latest
-    command: python manage.py runserver 0.0.0.0:8000
+    command: bash -c "python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000"
     build:
       context: .
       dockerfile: Dockerfile
@@ -39,6 +39,18 @@ services:
       - "6379:6379"
     networks:
       - digitalsys_network
+
+  celery:
+    build: .
+    container_name: celery
+    command: celery -A celery_tasks worker -Q default -l info -Ofair -E
+    volumes:
+      - ./:/home/app
+    networks:
+      - digitalsys_network
+    depends_on:
+      - db
+      - redis
 
 networks:
   digitalsys_network:
