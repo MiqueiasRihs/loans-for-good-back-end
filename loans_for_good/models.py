@@ -11,7 +11,7 @@ class CustomerAnalysis(models.Model):
     name = models.CharField(max_length=200, verbose_name=u'Nome')
     document = models.CharField(max_length=15, verbose_name=u'Documento')
     approved = models.BooleanField(default=False, verbose_name='Aprovada automaticamente?')
-    analyzed_at = models.DateTimeField(auto_now_add=False, verbose_name='Analisada automaticamente em', null=True, blank=True)
+    analyzed_at = models.DateTimeField(auto_now_add=False, verbose_name='Análisada automaticamente em', null=True, blank=True)
     email = models.CharField(max_length=200, verbose_name=u'Email', null=True, blank=True)
     phone_number = models.CharField(max_length=20, verbose_name="Telefone", null=True, blank=True)
     nationality = models.CharField(max_length=100, verbose_name="Nacionalidade", null=True, blank=True)
@@ -25,5 +25,12 @@ class CustomerAnalysis(models.Model):
     
 
 class UserFormConfiguration(models.Model):
-    user = models.OneToOneField(CustomerAnalysis, on_delete=models.CASCADE)
+    class Meta:
+        verbose_name = u'Formulario de análise'
+        verbose_name_plural = u'Formularios de análise'
+
+    name = models.CharField(max_length=200, verbose_name=u'Nome')
     field_settings = models.JSONField(default=dict)
+    
+    def __str__(self):
+        return self.name

@@ -1,8 +1,21 @@
 version: '3'
 services:
+  db:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - POSTGRES_DB=digitalsys
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+    ports:
+      - "5432:5432"
+    networks:
+      - digitalsys_network
+
   web:
     container_name: "django"
     image: python:latest
+    command: ./setup_dev.sh
     build:
       context: .
       dockerfile: Dockerfile
@@ -15,23 +28,15 @@ services:
       - DJANGO_SUPERUSER_PASSWORD
       - DJANGO_SUPERUSER_EMAIL
       - DJANGO_SUPERUSER_USERNAME
-    entrypoint: ./setup_dev.sh
     depends_on:
       - db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d digitalsys"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     tty: true
     stdin_open: true
-    networks:
-      - digitalsys_network
-  
-  db:
-    image: postgres:latest
-    container_name: postgres
-    environment:
-      - POSTGRES_DB=digitalsys
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
-    ports:
-      - "5432:5432"
     networks:
       - digitalsys_network
 

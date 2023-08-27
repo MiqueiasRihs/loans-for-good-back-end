@@ -1,12 +1,8 @@
 FROM python:3
 
-WORKDIR /home/app/
+WORKDIR /home/app
 
-COPY .env .
-COPY entrypoint.sh .
-COPY requirements.txt .
+COPY . .
 
 RUN pip install --no-cache-dir -r requirements.txt \
-    && chmod +x entrypoint.sh
-
-CMD ["chmod +x entrypoint.sh"]
+    && chmod +x setup_dev.sh
