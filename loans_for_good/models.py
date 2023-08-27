@@ -10,8 +10,8 @@ class CustomerAnalysis(models.Model):
 
     name = models.CharField(max_length=200, verbose_name=u'Nome')
     document = models.CharField(max_length=15, verbose_name=u'Documento')
-    approved = models.BooleanField(default=False, verbose_name='Aprovada?')
-    analyzed_at = models.DateTimeField(auto_now_add=False, verbose_name='Analisada em', null=True, blank=True)
+    approved = models.BooleanField(default=False, verbose_name='Aprovada automaticamente?')
+    analyzed_at = models.DateTimeField(auto_now_add=False, verbose_name='Analisada automaticamente em', null=True, blank=True)
     email = models.CharField(max_length=200, verbose_name=u'Email', null=True, blank=True)
     phone_number = models.CharField(max_length=20, verbose_name="Telefone", null=True, blank=True)
     nationality = models.CharField(max_length=100, verbose_name="Nacionalidade", null=True, blank=True)

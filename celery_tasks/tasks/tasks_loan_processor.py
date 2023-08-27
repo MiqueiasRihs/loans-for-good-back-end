@@ -15,8 +15,6 @@ def task_loan_request(url, headers, customer_id):
         "document": customer.document
     }))
     
-    print(response, "\n", response.json())
-
     if response.ok:
         content = response.json()
         
