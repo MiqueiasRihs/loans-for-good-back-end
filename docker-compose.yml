@@ -9,6 +9,11 @@ services:
       - POSTGRES_PASSWORD=root
     ports:
       - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U root -d digitalsys"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
     networks:
       - digitalsys_network
 
@@ -30,11 +35,6 @@ services:
       - DJANGO_SUPERUSER_USERNAME
     depends_on:
       - db
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U root -d digitalsys"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
     tty: true
     stdin_open: true
     networks:

@@ -18,7 +18,7 @@ class CustomerAnalysis(models.Model):
     birth_date = models.DateField(auto_now_add=False, verbose_name='Data de nascimento', null=True, blank=True)
     status = models.SmallIntegerField(verbose_name=u'Status', choices=ANALYSIS_STATUS, default=EnumAnalysisStatus.DENIED)
     monthly_income = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Renda mensal", null=True, blank=True)
-    marital_status = models.SmallIntegerField(verbose_name=u'Estado civil', choices=MARITAL_STATUS_OPTIONS, default=EnumMaritalStatusOptions.SINGLE)
+    marital_status = models.SmallIntegerField(verbose_name=u'Estado civil', choices=MARITAL_STATUS_OPTIONS, default=EnumMaritalStatusOptions.NONE)
 
     def __str__(self):
         return f'{self.name} - {self.document}' 

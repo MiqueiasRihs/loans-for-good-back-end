@@ -4,3 +4,4 @@ psycopg
 celery
 redis
 requests
+django-cors-headers
