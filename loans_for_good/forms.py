@@ -6,10 +6,11 @@ from .utils import FIELD_OPTIONS
 class UserFormConfigurationForm(forms.ModelForm):
     class Meta:
         model = UserFormConfiguration
-        fields = ['field_settings']
+        fields = ['name', 'field_settings']
 
     field_settings = forms.MultipleChoiceField(
         choices=FIELD_OPTIONS,
         widget=forms.CheckboxSelectMultiple,
         required=False,
+        initial=['name', 'document']
     )

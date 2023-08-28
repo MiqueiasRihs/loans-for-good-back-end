@@ -21,8 +21,6 @@ MARITAL_STATUS_OPTIONS = (
 )
 
 FIELD_OPTIONS = [
-    ('name', 'Nome'),
-    ('document', 'Documento'),
     ('email', 'Email'),
     ('marital_status', 'Status civil'),
     ('birth_date', 'Data de aniversário'),
