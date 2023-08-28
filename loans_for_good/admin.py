@@ -25,6 +25,7 @@ class CustomerAnalysisAdmin(admin.ModelAdmin):
 
 
 class UserFormConfigurationAdmin(admin.ModelAdmin):
+    list_display = ('name', 'field_settings',)
     form = UserFormConfigurationForm
 
 
