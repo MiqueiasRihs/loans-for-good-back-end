@@ -5,7 +5,7 @@ from .models import CustomerAnalysis, UserFormConfiguration
 from .forms import UserFormConfigurationForm
 
 class CustomerAnalysisAdmin(admin.ModelAdmin):
-    list_display = ('name', 'document', 'email', 'phone_number', 'approved', 'status', 'analyzed_at',)
+    list_display = ('name', 'document', 'email', 'phone_number', 'status', 'approved', 'analyzed_at',)
     search_fields = ('name', 'name', 'document', 'email',)
     readonly_fields = ['analyzed_at', 'approved']
     

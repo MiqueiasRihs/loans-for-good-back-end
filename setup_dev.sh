@@ -1,18 +1,24 @@
 #!/bin/sh
 
-echo xxxxxxxxxxxxxxx MIGRATIONS xxxxxxxxxxxxxxx
+echo ">>> Iniciando o PostgreSQL..."
+service postgresql start
 
-python manage.py makemigrations
-python manage.py migrate
-python manage.py createcachetable
+echo ">>> Criando o banco de dados 'digitalsys'..."
+psql -U postgres -c "CREATE DATABASE digitalsys"
 
-echo xxxxxxxxxxxxxxx CREATE USER xxxxxxxxxxxxxxx
+echo ">>> Executando migrações..."
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py createcachetable
 
-python manage.py createsuperuser \
-    --noinput \
-    --username $DJANGO_SUPERUSER_USERNAME \
-    --email $DJANGO_SUPERUSER_EMAIL
+echo ">>> Criando superusuário..."
+python3 manage.py createsuperuser --noinput --username $DJANGO_SUPERUSER_USERNAME --email $DJANGO_SUPERUSER_EMAIL
 
-echo xxxxxxxxxxxxxxx RUN PROJECT xxxxxxxxxxxxxxx
+echo ">>> Iniciando o worker do Celery..."
+celery -A celery_tasks worker -Q default -l INFO --detach
 
-python manage.py runserver 0.0.0.0:8000
+echo ">>> Populando a tabela SetUserFormConfiguration..."
+python3 manage.py ONEOFF_set_user_form_configuration
+
+echo ">>> Iniciando o servidor Django..."
+python3 manage.py runserver 0.0.0.0:8000
