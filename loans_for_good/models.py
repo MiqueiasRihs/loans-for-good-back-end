@@ -21,7 +21,12 @@ class CustomerAnalysis(models.Model):
     marital_status = models.SmallIntegerField(verbose_name=u'Estado civil', choices=MARITAL_STATUS_OPTIONS, default=EnumMaritalStatusOptions.NONE)
 
     def __str__(self):
-        return f'{self.name} - {self.document}' 
+        return f'{self.name} - {self.document}'
+    
+    def save(self, *args, **kwargs):
+        self.document = ''.join(filter(str.isdigit, self.document))
+        
+        super(CustomerAnalysis, self).save(*args, **kwargs)
     
 
 class UserFormConfiguration(models.Model):

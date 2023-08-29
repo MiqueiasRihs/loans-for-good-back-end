@@ -13,6 +13,10 @@ class CustomerAnalysisSerializer(serializers.ModelSerializer):
         fields = '__all__'
     
     def to_internal_value(self, data):
+        name = data.get('name')
+        if not name:
+            raise serializers.ValidationError({'message': 'Não se esqueça de preencher seu nome.'})
+        
         # Birth date validation
         birth_date = data.get('birth_date')
         if birth_date:
@@ -28,6 +32,9 @@ class CustomerAnalysisSerializer(serializers.ModelSerializer):
             document = ''.join(filter(str.isdigit, document))
             if not document_validation(document):
                 raise serializers.ValidationError({'message': 'CPF inválido'})
+        else:
+            raise serializers.ValidationError({'message': 'Não se esqueça de preencher seu CPF'})
+            
             
         # Phone number validation
         phone_number = data.get('phone_number')
