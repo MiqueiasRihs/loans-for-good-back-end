@@ -4,7 +4,7 @@ RUN addgroup --gid 1024 shared
 WORKDIR /home/app
 
 COPY . .
-COPY locale.gen /etc/locale.gen
+COPY ./db/locale.gen /etc/locale.gen
 
 RUN apt-get update && \
 	apt-get install sudo git nano curl gnupg build-essential libpq-dev \
@@ -22,6 +22,6 @@ RUN locale-gen
 
 WORKDIR /tmp/
 RUN sudo mv /etc/postgresql/14/main/pg_hba.conf /etc/postgresql/14/main/pg_hba.conf.bak
-COPY pg_hba.conf /etc/postgresql/14/main/pg_hba.conf 
+COPY ./db/pg_hba.conf /etc/postgresql/14/main/pg_hba.conf 
 
 WORKDIR /home/app
