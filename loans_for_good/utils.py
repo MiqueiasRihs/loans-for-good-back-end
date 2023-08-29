@@ -35,32 +35,38 @@ FIELD_OPTIONS = [
 FIELD_OPTIONS_DICT = {
     'email': {
         'name': 'email',
+        'type': 'text',
         'label': 'Email',
         'placeholder': 'Digite seu email',
     },
     'marital_status': {
         'name': 'marital_status',
+        'type': 'select',
         'label': 'Status civil',
         'placeholder': 'Qual seu estado civil',
         'options': [{key: value} for key, value in MARITAL_STATUS_OPTIONS]
     },
     'birth_date': {
         'name': 'birth_date',
+        'type': 'text',
         'label': 'Data de aniversário',
         'placeholder': 'Digite seu aniversário',
     },
     'nationality': {
         'name': 'nationality',
+        'type': 'text',
         'label': 'Nacionalidade',
         'placeholder': 'Digite sua nacionalidade',
     },
     'phone_number': {
         'name': 'phone_number',
+        'type': 'text',
         'label': 'Telefone',
         'placeholder': 'Digite seu telefone',
     },
     'monthly_income': {
         'name': 'monthly_income',
+        'type': 'number',
         'label': 'Renda mensal',
         'placeholder': 'Digite sua renda mensal',
     },

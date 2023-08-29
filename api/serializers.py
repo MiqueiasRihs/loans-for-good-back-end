@@ -15,18 +15,19 @@ class CustomerAnalysisSerializer(serializers.ModelSerializer):
     def to_internal_value(self, data):
         # Birth date validation
         birth_date = data.get('birth_date')
-        try:
-            birth_date = datetime.strptime(birth_date, '%d/%m/%Y').strftime('%Y-%m-%d')
-            data['birth_date'] = birth_date
-        except ValueError:
-            raise serializers.ValidationError({'birth_date': 'Data de nascimento inválida'})
+        if birth_date:
+            try:
+                birth_date = datetime.strptime(birth_date, '%d/%m/%Y').strftime('%Y-%m-%d')
+                data['birth_date'] = birth_date
+            except ValueError:
+                raise serializers.ValidationError({'message': 'Data de nascimento inválida'})
             
         # Document validation
         document = data.get('document')
         if document:
             document = ''.join(filter(str.isdigit, document))
             if not document_validation(document):
-                raise serializers.ValidationError({'document': 'CPF inválido'})
+                raise serializers.ValidationError({'message': 'CPF inválido'})
             
         # Phone number validation
         phone_number = data.get('phone_number')

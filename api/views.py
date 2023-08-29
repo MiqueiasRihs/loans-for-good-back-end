@@ -9,6 +9,8 @@ from api.integrations.loan_processor import LoanProcessor
 from loans_for_good.models import CustomerAnalysis, UserFormConfiguration
 from loans_for_good.utils import FIELD_OPTIONS_DICT
 
+import json
+
 class CustomerAnalysisView(APIView):
     def post(self, request):
         data = CustomerAnalysisSerializer(data=request.data)
@@ -20,9 +22,9 @@ class CustomerAnalysisView(APIView):
                 loan_processor = LoanProcessor()
                 loan_processor.loan_request(customer)
 
-                return Response({'message': 'Dados recebidos com sucesso! iremos análisar seus dados e logo lhe damos a resposta.'}, status=status.HTTP_200_OK)
+                return Response({'message': 'Dados recebidos com sucesso! iremos realizar a análise e logo lhe daremos uma resposta.'}, status=status.HTTP_200_OK)
             except Exception as e:
-                return Response({'error': 'Erro ao criar objeto CustomerAnalysis'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                return Response({'message': 'Erro ao criar os dados para a análise.'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
         return Response(data.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request):
@@ -33,6 +35,6 @@ class CustomerAnalysisView(APIView):
         
             return Response({'fields': fields_data}, status=status.HTTP_200_OK)
         
-        return Response({}, status=status.HTTP_204_NO_CONTENT)
+        return Response({}, status=status.HTTP_200_OK)
         
         
