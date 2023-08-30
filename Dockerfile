@@ -17,7 +17,7 @@ RUN apt-get update && \
 ARG DEBIAN_FRONTEND=noninteractive
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ jammy-pgdg main" >> /etc/apt/sources.list
 RUN curl -fsSL "https://www.postgresql.org/media/keys/ACCC4CF8.asc" | gpg --dearmor > /etc/apt/trusted.gpg.d/postgres.gpg
-RUN apt-get update && apt-get install postgresql-14 -y
+RUN apt-get install postgresql-14 -y
 RUN locale-gen
 
 WORKDIR /tmp/
