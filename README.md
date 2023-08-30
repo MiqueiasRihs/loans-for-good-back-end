@@ -1,4 +1,4 @@
-# Loans For Good - Front-End
+# Loans For Good - Back-End
 
 Neste repositório contem a parte do back-end do projeto [Loans For Good](https://github.com/MiqueiasRihs/Loans-for-good) feito em Django, Postgresql e Celery.
 
