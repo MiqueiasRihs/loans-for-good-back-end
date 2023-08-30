@@ -20,5 +20,8 @@ celery -A celery_tasks worker -Q default -l INFO --detach
 echo ">>> Populando a tabela SetUserFormConfiguration..."
 python3 manage.py ONEOFF_set_user_form_configuration
 
+echo ">>> Iniciando os testes unitários..."
+pytest
+
 echo ">>> Iniciando o servidor Django..."
 python3 manage.py runserver 0.0.0.0:8000

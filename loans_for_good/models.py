@@ -30,12 +30,12 @@ class CustomerAnalysis(models.Model):
     
 
 class UserFormConfiguration(models.Model):
+    name = models.CharField(max_length=200, verbose_name=u'Nome')
+    field_settings = models.JSONField(default=dict)
+
     class Meta:
         verbose_name = u'Formulario de análise'
         verbose_name_plural = u'Formularios de análise'
-
-    name = models.CharField(max_length=200, verbose_name=u'Nome')
-    field_settings = models.JSONField(default=dict)
     
     def __str__(self):
         return self.name
